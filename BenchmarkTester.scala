@@ -12,7 +12,7 @@ object BenchmarkTester {
 			inputs(i) = i
 		}
 		
-		/* Uncomment the test(s) you want to run - run just one at a time*/
+		/* Uncomment the test(s) you want to run - run just one at a time */
 		println("Benchmarking using Array input...")
 		print("Duration of divideByTwo: ")
 		print(Benchmarker.benchmark[Int, Boolean](IsPowerOfTwo.divideByTwo(_), inputs) + "ms\n")

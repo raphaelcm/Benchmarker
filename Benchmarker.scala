@@ -1,7 +1,3 @@
-import java.util.{Date, Locale}
-import java.text.DateFormat
-import java.text.DateFormat._
-
 object Benchmarker {
 
 	/** 
@@ -9,7 +5,7 @@ object Benchmarker {
 	 * Method is genericized for input and output types of f. 
 	 *
 	 * Usage:
-	 *   Benchmarker.benchmark[T, R](f[Function1], inputs[List])
+	 *   Benchmarker.benchmark[T, R](f[Function1], inputs[Array])
 	 *
 	 * @param f Function1 ((T) => R)
 	 * @param inputs Array[T]
@@ -43,7 +39,7 @@ object Benchmarker {
 	}
 
 	/** 
-	 * Measure the performance of one function f over a delimited input file. 
+	 * TO DO: Measure the performance of one function f over a delimited input file. 
 	 * Method is genericized for input and output types of f. 
 	 *
 	 * Usage:
