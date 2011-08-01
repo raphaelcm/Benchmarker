@@ -1,3 +1,5 @@
+import compat.Platform
+
 object Benchmarker {
 
 	/** 
@@ -12,10 +14,12 @@ object Benchmarker {
 	 * @return elapsed time in milliseconds (Long)
 	 */
 	def benchmark[T, R](f: (T) => R, inputs: Array[T]): Long = {
-		val l1 = System.currentTimeMillis
+		val l1 = Platform.currentTime
 		for(i <- 0 until inputs.length) f(inputs(i))
+		val l2 = Platform.currentTime
+		Platform.collectGarbage
 		
-		return System.currentTimeMillis - l1
+		return l2 - l1
 	}
 
 	/** 
@@ -30,12 +34,15 @@ object Benchmarker {
 	 * @return elapsed time in milliseconds (Long)
 	 */
 	def benchmark[T, R](f: (T) => R, inputs: List[T]): Long = {
-		val l1 = System.currentTimeMillis
 		val inputsIterator = inputs.iterator
+		val l1 = Platform.currentTime
 		
 		while(inputsIterator.hasNext) f(inputsIterator.next)
 		
-		return System.currentTimeMillis - l1
+		val l2 = Platform.currentTime
+		Platform.collectGarbage
+		
+		return l2 - l1
 	}
 
 	/** 
@@ -72,10 +79,13 @@ object Benchmarker {
 	 * @return Long (elapsed time in ms)
 	 */
 	def benchmark[T, R](f: (T) => R, generator: (Int) => T, iterations: Int): Long = {
-		val l1 = System.currentTimeMillis
+		val l1 = Platform.currentTime
 		
 		for(i <- 0 until iterations) f(generator(i))
 		
-		return System.currentTimeMillis - l1
+		val l2 = Platform.currentTime
+		Platform.collectGarbage
+		
+		return l2 - l1
 	}
 }

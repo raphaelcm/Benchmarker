@@ -41,7 +41,7 @@ object IsPowerOfTwo {
 		var exponent = 0
 
 		while (powersOfTwo(exponent) < x && exponent < 31) {
-			exponent = exponent+1
+			exponent += 1
 		}
 		return (x == powersOfTwo(exponent))
 	}
@@ -56,9 +56,9 @@ object IsPowerOfTwo {
 		if(x == 1) return true
 
 		while (x != powersOfTwo(exponent) && interval > 1) {
-			if (x < powersOfTwo(exponent)) exponent = exponent - interval/2
-			else exponent = exponent - interval/2
-			interval = interval / 2
+			if (x < powersOfTwo(exponent)) exponent -= interval/2
+			else exponent -= interval/2
+			interval /= 2
 		}
 		isAPowerOfTwo = x == powersOfTwo(exponent);
 
